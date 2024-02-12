@@ -10,13 +10,15 @@ partner_number = os.getenv("PARTNER_PHONE_NUMBER")
 
 
 class WhatsappMessage:
+    """Class to handle WhatsApp messages"""
     def __init__(self, message_body):
-        ACCOUNT_SID = account_sid
-        AUTH_TOKEN = auth_token
-        self.client = Client(ACCOUNT_SID, AUTH_TOKEN)
+        self.account_sid = account_sid
+        self.auth_token = auth_token
+        self.client = Client(self.account_sid, self.auth_token)
         self.body = message_body
 
     def send_message(self):
+        """Send a WhatsApp message"""
         message = self.client.messages.create(
             to=f"whatsapp:{partner_number}",
             from_=f"whatsapp:{phone_number}",

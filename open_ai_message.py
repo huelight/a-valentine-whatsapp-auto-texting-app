@@ -7,8 +7,9 @@ api_key = os.getenv("CORTEX_API_KEY")
 
 
 class TextCreator:
+    """Class to create text using TextCortex API"""
     def __init__(self, your_name, partner_name, temperature):
-        API_KEY = api_key
+        self.api_key = api_key
         self.payload = {
             "formality": "default",
             "max_tokens": 2048,
@@ -21,11 +22,12 @@ class TextCreator:
         }
         self.headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {API_KEY}"
+            "Authorization": f"Bearer {self.api_key}"
         }
         self.url = "https://api.textcortex.com/v1/texts/completions"
 
     def create_text(self):
+        """Create text using TextCortex API"""
         make_request = requests.request(
             method="POST",
             url=self.url,
@@ -35,7 +37,5 @@ class TextCreator:
         response = make_request.json()
         if response["status"] == "success":
             return response["data"]["outputs"][0]["text"]
-        else:
-            return "I'm sorry, but there was an error generating the love message. I still love you though."
 
-
+        return "I'm sorry, but there was an error generating the love message. I still love you though."

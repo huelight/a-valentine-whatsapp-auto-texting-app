@@ -1,8 +1,8 @@
-from twilio_ import WhatsappMessage
-from open_ai_message import TextCreator
 import random
 import time
 from datetime import datetime
+from open_ai_message import TextCreator
+from twilio_ import WhatsappMessage
 
 partner_name = input("What is your Partner's name \n")
 your_name = input("What is your name \n")
